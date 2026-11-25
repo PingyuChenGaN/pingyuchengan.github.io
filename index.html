@@ -11,7 +11,7 @@
     <title data-i18n="meta.title">陳秉佑 | IC 設計與系統整合</title>
     <link rel="preload" href="assets/profile-photo.jpg" as="image" />
     <link rel="preload" href="assets/life-cat-hero.jpg" as="image" />
-    <link rel="stylesheet" href="styles.css?v=20261125-ic" />
+    <link rel="stylesheet" href="styles.css?v=20261125-analog" />
   </head>
   <body>
     <canvas id="water-canvas" aria-hidden="true"></canvas>
@@ -113,6 +113,8 @@
           <div class="keyword-cloud" aria-label="Keywords">
             <button type="button" data-i18n="keyword.digital" data-targets="deck-jk-spec">Full-custom Digital IC</button>
             <button type="button" data-i18n="keyword.analog" data-targets="deck-ana-corner">Analog IC · PVT Corners</button>
+            <button type="button" data-i18n="keyword.anaBlocks" data-targets="deck-ana-blocks">Bandgap · Miller Compensation</button>
+            <button type="button" data-i18n="keyword.anaSpec" data-targets="deck-ana-spec">Op-amp Spec Extraction</button>
             <button type="button" data-i18n="keyword.platform" data-targets="deck-sic-platform">High-temp Test System</button>
             <button type="button" data-i18n="keyword.dpt" data-targets="deck-sic-dynamic">Double Pulse Test</button>
             <button type="button" data-i18n="keyword.qg" data-targets="deck-epi-rule">Qg &amp; Gate-drive Budget</button>
@@ -190,7 +192,9 @@
           <div class="deck" data-deck aria-label="Analog IC project slides" data-i18n-attr="aria-label:analog.analogHeading">
             <div class="deck-tabs" role="tablist">
               <button type="button" role="tab" data-deck-topic="ana-circuit"><span>01</span><span data-i18n="deck.tabAnaCircuit">電路與版圖</span></button>
-              <button type="button" role="tab" data-deck-topic="ana-corner"><span>02</span><span data-i18n="deck.tabAnaCorner">Corner 與 spec margin</span></button>
+              <button type="button" role="tab" data-deck-topic="ana-blocks"><span>02</span><span data-i18n="ana.tabBlocks">子電路細節</span></button>
+              <button type="button" role="tab" data-deck-topic="ana-corner"><span>03</span><span data-i18n="deck.tabAnaCorner">Corner 與 spec margin</span></button>
+              <button type="button" role="tab" data-deck-topic="ana-spec"><span>04</span><span data-i18n="ana.tabSpec">指標萃取</span></button>
             </div>
 
           <article class="deck-step" data-topic="ana-circuit">
@@ -205,6 +209,66 @@
             </div>
           </article>
 
+          <article class="deck-step" data-topic="ana-blocks" data-highlight-id="deck-ana-blocks">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-diffamp.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-diffamp.jpg?v=1" width="1600" height="721" alt="First-stage differential amplifier: tail M2, PMOS input pair M6/M7, NMOS active load M8/M9, with common-centroid layout" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Analog · ① First stage</p>
+              <h3 data-i18n="ana.b1Title"></h3>
+              <p data-i18n="ana.b1Body"></p>
+              <p class="deck-point" data-i18n="ana.b1Point"></p>
+            </div>
+          </article>
+
+          <article class="deck-step" data-topic="ana-blocks">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-second-stage.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-second-stage.jpg?v=1" width="1600" height="721" alt="Second-stage common-source amplifier M3 and M10 with Miller compensation R2 / C1 and its layout" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Analog · ② Second stage</p>
+              <h3 data-i18n="ana.b2Title"></h3>
+              <p data-i18n="ana.b2Body"></p>
+              <p class="deck-point" data-i18n="ana.b2Point"></p>
+            </div>
+          </article>
+
+          <article class="deck-step" data-topic="ana-blocks">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-hysteresis.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-hysteresis.jpg?v=1" width="1600" height="721" alt="Hysteresis comparator: M12/M13, M5/M11 output branch, and inverters I9 / I10 with layout" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Analog · ③ Hysteresis</p>
+              <h3 data-i18n="ana.b3Title"></h3>
+              <p data-i18n="ana.b3Body"></p>
+              <p class="deck-point" data-i18n="ana.b3Point"></p>
+            </div>
+          </article>
+
+          <article class="deck-step" data-topic="ana-blocks">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-selector.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-selector.jpg?v=1" width="1600" height="721" alt="Selector: two NAND gates driven by Vcontrol choose op-amp or comparator mode, with NAND layout" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Analog · ④ Selector</p>
+              <h3 data-i18n="ana.b4Title"></h3>
+              <p data-i18n="ana.b4Body"></p>
+              <p class="deck-point" data-i18n="ana.b4Point"></p>
+            </div>
+          </article>
+
+          <article class="deck-step" data-topic="ana-blocks">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-bandgap.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-bandgap.jpg?v=1" width="1600" height="721" alt="Bandgap reference core, start-up circuit M1–M4, and the M0 current mirror that biases the main circuit" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Analog · ⑤ Bandgap</p>
+              <h3 data-i18n="ana.b5Title"></h3>
+              <p data-i18n="ana.b5Body"></p>
+              <p class="deck-point" data-i18n="ana.b5Point"></p>
+            </div>
+          </article>
+
           <article class="deck-step" data-topic="ana-corner" data-highlight-id="deck-ana-corner">
             <a class="deck-slide" href="assets/slides/deck/ic-analog-corner.jpg?v=en1" target="_blank" rel="noopener">
               <img src="assets/slides/deck/ic-analog-corner.jpg?v=en1" width="1600" height="721" alt="Using corners and layout matching to judge spec margin and yield risk" loading="lazy" decoding="async" />
@@ -216,9 +280,117 @@
               <p class="deck-point" data-i18n="deck.ana2Point">判讀原則：全 corner 都失效先修設計；單一 corner 失效再拆 process sensitivity，最後用 silicon data 做 model-to-silicon correlation，再決定 test spec 與 guard-band。</p>
             </div>
           </article>
+
+          <article class="deck-step" data-topic="ana-spec" data-highlight-id="deck-ana-spec">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-spec-gain.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-spec-gain.jpg?v=1" width="1600" height="721" alt="Open-loop gain extraction from the AC magnitude plateau" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Spec · Open-loop gain</p>
+              <h3 data-i18n="ana.mGainTitle"></h3>
+              <p data-i18n="ana.mGainBody"></p>
+              <p class="deck-point" data-i18n="ana.mGainPoint"></p>
+            </div>
+          </article>
+
+          <article class="deck-step" data-topic="ana-spec">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-spec-ugbw.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-spec-ugbw.jpg?v=1" width="1600" height="721" alt="Unity-gain bandwidth from the 0 dB crossing" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Spec · UGBW</p>
+              <h3 data-i18n="ana.mUgbwTitle"></h3>
+              <p data-i18n="ana.mUgbwBody"></p>
+              <p class="deck-point" data-i18n="ana.mUgbwPoint"></p>
+            </div>
+          </article>
+
+          <article class="deck-step" data-topic="ana-spec">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-spec-pm.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-spec-pm.jpg?v=1" width="1600" height="721" alt="Phase margin read at the 0 dB crossing frequency" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Spec · Phase margin</p>
+              <h3 data-i18n="ana.mPmTitle"></h3>
+              <p data-i18n="ana.mPmBody"></p>
+              <p class="deck-point" data-i18n="ana.mPmPoint"></p>
+            </div>
+          </article>
+
+          <article class="deck-step" data-topic="ana-spec">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-spec-cmrr.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-spec-cmrr.jpg?v=1" width="1600" height="721" alt="CMRR from the common-mode gain" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Spec · CMRR</p>
+              <h3 data-i18n="ana.mCmrrTitle"></h3>
+              <p data-i18n="ana.mCmrrBody"></p>
+              <p class="deck-point" data-i18n="ana.mCmrrPoint"></p>
+            </div>
+          </article>
+
+          <article class="deck-step" data-topic="ana-spec">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-spec-psrr.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-spec-psrr.jpg?v=1" width="1600" height="721" alt="PSRR from the supply-to-output gain" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Spec · PSRR</p>
+              <h3 data-i18n="ana.mPsrrTitle"></h3>
+              <p data-i18n="ana.mPsrrBody"></p>
+              <p class="deck-point" data-i18n="ana.mPsrrPoint"></p>
+            </div>
+          </article>
+
+          <article class="deck-step" data-topic="ana-spec">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-spec-iq.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-spec-iq.jpg?v=1" width="1600" height="721" alt="Quiescent current per corner from the DC operating point" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Spec · Quiescent current</p>
+              <h3 data-i18n="ana.mIqTitle"></h3>
+              <p data-i18n="ana.mIqBody"></p>
+              <p class="deck-point" data-i18n="ana.mIqPoint"></p>
+            </div>
+          </article>
+
+          <article class="deck-step" data-topic="ana-spec">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-spec-icmr.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-spec-icmr.jpg?v=1" width="1600" height="721" alt="Input common-mode range from a VCM sweep of the differential gain" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Spec · Input CM range</p>
+              <h3 data-i18n="ana.mIcmrTitle"></h3>
+              <p data-i18n="ana.mIcmrBody"></p>
+              <p class="deck-point" data-i18n="ana.mIcmrPoint"></p>
+            </div>
+          </article>
+
+          <article class="deck-step" data-topic="ana-spec">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-spec-offset.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-spec-offset.jpg?v=1" width="1600" height="721" alt="Input offset from a microvolt DC sweep around the balance point" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Spec · Offset</p>
+              <h3 data-i18n="ana.mOffsetTitle"></h3>
+              <p data-i18n="ana.mOffsetBody"></p>
+              <p class="deck-point" data-i18n="ana.mOffsetPoint"></p>
+            </div>
+          </article>
+
+          <article class="deck-step" data-topic="ana-spec">
+            <a class="deck-slide" href="assets/slides/deck/ic-analog-spec-hyst.jpg?v=1" target="_blank" rel="noopener">
+              <img src="assets/slides/deck/ic-analog-spec-hyst.jpg?v=1" width="1600" height="721" alt="Hysteresis trip points from forward and reverse input sweeps" loading="lazy" decoding="async" />
+            </a>
+            <div class="deck-copy">
+              <p class="tag">Spec · Hysteresis</p>
+              <h3 data-i18n="ana.mHystTitle"></h3>
+              <p data-i18n="ana.mHystBody"></p>
+              <p class="deck-point" data-i18n="ana.mHystPoint"></p>
+            </div>
+          </article>
           <div class="deck-nav">
             <button type="button" class="deck-prev" aria-label="上一頁" data-i18n-attr="aria-label:deck.prev">←</button>
-            <span class="deck-count" aria-live="polite">1 / 2</span>
+            <span class="deck-count" aria-live="polite">1 / 16</span>
             <button type="button" class="deck-next" aria-label="下一頁" data-i18n-attr="aria-label:deck.next">→</button>
           </div>
           </div>
@@ -886,8 +1058,8 @@
 
     <button class="back-to-top" type="button" aria-label="返回最頂部" title="返回最頂部">↑</button>
 
-    <script src="i18n.js?v=20261125-ic"></script>
-    <script src="script.js?v=20261125-ic"></script>
-    <script type="module" src="background3d.js?v=20261125-ic"></script>
+    <script src="i18n.js?v=20261125-analog"></script>
+    <script src="script.js?v=20261125-analog"></script>
+    <script type="module" src="background3d.js?v=20261125-analog"></script>
   </body>
 </html>
